@@ -1,5 +1,5 @@
 # `titanic` is a data.frame with four columns: `Survived`, `Pclass`, `Sex`, `Age`. 
-# You'll find four `ggplot` plots with increasing complexity levels. 
+# You'll find three `ggplot` plots with increasing complexity levels. 
 # Each plot communicates more  information than that of the preceding plot
 
 # 1 - this plot shows the number of male/female in each `Pclass`. 

@@ -1,6 +1,6 @@
 ###Mosaic Plot
 #Based on California health care data. Plot shows the frequency distribution within each BMI category.
-#table "adult" has indiviaul information containing attributes such as age ("SRAGE_P") and BMI ("RBMI") category.
+#table "adult" has individaul information containing attributes such as age ("SRAGE_P") and BMI ("RBMI") category.
 
 #create initial contingency table
 DF <- as.data.frame.matrix(table(adult$SRAGE_P, adult$RBMI))
@@ -16,8 +16,8 @@ DF$groupSum <- NULL
 # Copy row names to variable X
 DF$X <- row.names(DF)
 
-# Melt the dataset keeping three columns "X", "xmin", "xmax". for each unique combination of the three attributes, 
-# add a column "FILL" representing the BMI category. This also creates a value column showing the number of obervations.
+# Melt the dataset keeping three columns "X", "xmin", "xmax". For each unique combination of the three attributes, 
+# add a column "FILL" representing the BMI category. This also creates a "value" column showing the number of obervations.
 
 library(reshape2)
 DF_melted <- melt(DF, id.vars = c("X", "xmin", "xmax"), variable.name = "FILL")
@@ -29,7 +29,7 @@ DF_melted <- DF_melted %>%
   mutate(ymax = cumsum(value/sum(value)),
          ymin = ymax - value/sum(value))
          
-  # Plot rectangles
+# Plot rectangles
 BMI_fill <- scale_fill_brewer("BMI Category", palette = "Reds")
 library(ggthemes)
 ggplot(DF_melted, aes(ymin = ymin,ymax = ymax,xmin = xmin,xmax = xmax,fill = FILL)) +geom_rect(colour = "white") +scale_x_continuous(expand = c(0,0)) +
